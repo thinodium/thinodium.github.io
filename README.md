@@ -1,5 +1,5 @@
-Documentation site for [thinodium](https://github.com/hiddentao/thinodium), viewable 
-live at [hiddentao.github.io/thindoium](https://hiddentao.github.io/thindoium).
+Documentation site for [thinodium](https://github.com/hiddentao/thinodium), viewable
+live at [thinodium.github.io](https://thinodium.github.io).
 
 ## Building
 
@@ -15,4 +15,3 @@ To watch for changes and rebuild accordingly:
 ```bash
 $ npm run dev
 ```
-
