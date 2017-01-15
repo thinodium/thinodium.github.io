@@ -28,7 +28,7 @@ html
         small Light-weight, "thin" Object Document Mapper (ODM) for Node.js.
 
       .links
-        a.github(href="https://github.com/hiddentao/thinodium", title="Github")
+        a.github(href="https://github.com/thinodium/thinodium", title="Github")
           i.fa.fa-github
           span Github
         a.twitter(href="https://twitter.com/hiddentao", title="Twitter")
@@ -40,7 +40,7 @@ html
 
       section#intro
         :marked
-          **Thinodium** wraps your database tables and data rows in an easy-to-use 
+          **Thinodium** wraps your database tables and data rows in an easy-to-use
           yet flexible API.
 
           Overview:
@@ -52,8 +52,8 @@ html
           * [Adapter](#adapters) architecture - use your db of choice.
           * Clean, object-oriented [API](#api).
 
-          What sets Thinodium apart from other _heavier_ abstractions is that 
-          it does not dictate how inter-table relationships are represented, 
+          What sets Thinodium apart from other _heavier_ abstractions is that
+          it does not dictate how inter-table relationships are represented,
           leaving you the freedom to do what's optimal for your db.
 
           To use Thinodium within your code:
@@ -67,9 +67,9 @@ html
         :marked
           ## Connecting
 
-          In order to connect to a database Thinodium requires you 
-          to install an [available adapter](https://www.npmjs.com/search?q=thinodium) 
-          for that database type. We're going to use the RethinkDB 
+          In order to connect to a database Thinodium requires you
+          to install an [available adapter](https://www.npmjs.com/search?q=thinodium)
+          for that database type. We're going to use the RethinkDB
           adapter for all the examples going forward.
 
         +code('bash').
@@ -81,7 +81,7 @@ html
         +code('javascript').
           const db = yield Thinodium.connect('rethinkdb', {
             db: 'mydb',
-          }); 
+          });
 
         :marked
           The returned object `db` is an instance of `Thinodium.Database`.
@@ -90,7 +90,7 @@ html
         :marked
           ## Querying
 
-          Imagine we have a simple table - **students** - with the 
+          Imagine we have a simple table - **students** - with the
           following data:
 
         table
@@ -103,38 +103,38 @@ html
           tr
             td 1
             td Tom
-            td 19      
-            td ['football', 'tennis']      
+            td 19
+            td ['football', 'tennis']
           tr
             td 2
             td Jim
-            td 22            
-            td ['running']      
+            td 22
+            td ['running']
           tr
             td 3
             td Abe
-            td 98            
-            td []      
+            td 98
+            td []
           tr
             td 4
             td Candy
-            td 5            
-            td ['hockey', 'netball']      
+            td 5
+            td ['hockey', 'netball']
           tr
             td 5
             td Ram
-            td 27            
-            td ['climbing']      
+            td 27
+            td ['climbing']
           tr
             td 6
             td Drew
-            td 41            
-            td ['hockey']      
+            td 41
+            td ['hockey']
           tr
             td 7
             td Jeff
-            td 31            
-            td ['tennis']      
+            td 31
+            td ['tennis']
 
         :marked
           To fetch a student:
@@ -159,13 +159,13 @@ html
               sports: ['hockey', 'netball']
             }
           */
-         
+
       section#documents
         :marked
-          ### Documents 
+          ### Documents
 
-          Each returned result is an instance of `Thinodium.Document`. Documents 
-          encapsulate the raw data and can be enumerated just like plain 
+          Each returned result is an instance of `Thinodium.Document`. Documents
+          encapsulate the raw data and can be enumerated just like plain
           objects.
 
         +code('javascript').
@@ -177,10 +177,10 @@ html
           /*
             [ 'id', 'name', 'age' ]
           */
-         
+
         :marked
-          Documents automatically keep track of which 
-          properties get changed and only update those properties in the 
+          Documents automatically keep track of which
+          properties get changed and only update those properties in the
           database when you call `save()`.
 
         +code('javascript').
@@ -191,10 +191,10 @@ html
           yield candy.save();
 
           /* We have renamed Candy to Jimbo */
-         
+
         :marked
-          Most databases allow for `Array` or `Object` fields. If you modify 
-          the contents of such a field you will need to tell Thinodium that 
+          Most databases allow for `Array` or `Object` fields. If you modify
+          the contents of such a field you will need to tell Thinodium that
           the field got modified (as it cannot detect this by itself):
 
         +code('javascript').
@@ -206,12 +206,12 @@ html
           result.markChanged('sports');
 
           yield result.save();
-           
+
       section#raw
         :marked
           ### Raw data
 
-          To deal directly with raw db data and not use 
+          To deal directly with raw db data and not use
           `Thinodium.Document` instances you can use the `raw` methods:
 
         +code('javascript').
@@ -230,7 +230,7 @@ html
           */
 
         :marked
-          The most powerful raw method is `rawQry()`. This returns a querying 
+          The most powerful raw method is `rawQry()`. This returns a querying
           object which should allow you to execute any query supported by underlying database engine interface:
 
         +code('javascript').
@@ -293,9 +293,9 @@ html
               name: 'Amanda',
               age: 76,
               sports: [],
-            }  
+            }
           */
-         
+
         :marked
           Raw insertion mode is also supported:
 
@@ -316,7 +316,7 @@ html
               name: 'Amanda',
               age: 76,
               sports: [],
-            }  
+            }
           */
 
 
@@ -367,11 +367,11 @@ html
         :marked
           ## Customization
 
-          Thinodium is a light-weight ODM, so out of the box it only 
-          gives you the bare essentials, such as `get()` and 
+          Thinodium is a light-weight ODM, so out of the box it only
+          gives you the bare essentials, such as `get()` and
           `insert()` for models.
 
-          However you can easily extend both `Thinodium.Model` and 
+          However you can easily extend both `Thinodium.Model` and
           `Thinodium.Document` instances with custom methods and fields.
 
       section#model_methods
@@ -405,8 +405,8 @@ html
           console.log( students[0] instanceof Thinodium.Document ); /* true */
 
         :marked
-          Custom methods can be _generator functions_ too. However it is recommended 
-          that your custom methods return `Promise` objects and that the 
+          Custom methods can be _generator functions_ too. However it is recommended
+          that your custom methods return `Promise` objects and that the
           actual results are wrapped in `Document` instances, as shown above.
 
       section#doc_methods
@@ -442,8 +442,8 @@ html
         :marked
           ### Virtual fields
 
-          Virtual fields work like normal `Thinodium.Document` fields, 
-          except that their value is actually a getter function and they 
+          Virtual fields work like normal `Thinodium.Document` fields,
+          except that their value is actually a getter function and they
           are usually read-only. And they do not get saved to the database.
 
         +code('javascript').
@@ -453,10 +453,10 @@ html
                 get: function() {
                   let name = this.name, reversed = '';
 
-                  for (let i = name.length - 1; 
-                      i >= 0; 
+                  for (let i = name.length - 1;
+                      i >= 0;
                       reversed += nam[i--]);
-                  
+
                   return reversed;
                 }
               }
@@ -470,7 +470,7 @@ html
           console.log( jeff.toJSON );
 
           /*
-            { 
+            {
               id: 7,
               name: 'Jeff',
               age: 31,
@@ -488,10 +488,10 @@ html
           const reverseStr = function(str) {
             let reversed = '';
 
-            for (let i = str.length - 1; 
-                i >= 0; 
+            for (let i = str.length - 1;
+                i >= 0;
                 reversed += str[i--]);
-            
+
             return reversed;
           }
 
@@ -519,9 +519,9 @@ html
         :marked
           ## Schema validation
 
-          Thinodium can optionally validate the structure of your document against a 
-          schema you provide. The schema specified according what is supported 
-          by the [simple-nosql-schema](https://github.com/hiddentao/simple-nosql-schema) 
+          Thinodium can optionally validate the structure of your document against a
+          schema you provide. The schema specified according what is supported
+          by the [simple-nosql-schema](https://github.com/hiddentao/simple-nosql-schema)
           module.
 
         +code('javascript').
@@ -536,12 +536,12 @@ html
               }
             }
           });
-  
+
           try {
             yield model.insert({
               name: 23,
               hasKids: true
-            });          
+            });
           } catch (err) {
             console.log( err.failures );
 
@@ -549,12 +549,12 @@ html
               [
                 "/name: must be a string"
                 "/age: missing value"
-              ]            
+              ]
              */
           }
-         
+
         :marked
-          _Note: Although `hasKids` is present in the inserted document, 
+          _Note: Although `hasKids` is present in the inserted document,
           the validator will ignore it since it isn't present in the schema._
 
           Nested hierarchies can also be validated:
@@ -583,7 +583,7 @@ html
               }
             }
           });
-  
+
           try {
             yield model.insert({
               name: 23,
@@ -596,7 +596,7 @@ html
             console.log(err.failures);
 
             /*
-              [ 
+              [
                 "/address/houseNum: must be a number",
                 "/address/streetName: must be a string",
                 "/address/country: missing value",
@@ -609,8 +609,8 @@ html
         :marked
           ## Index creation
 
-          The Thinodium core library does not assume the use of database indexes. 
-          However, individual db adapters may opt to support them. The RethinkDB 
+          The Thinodium core library does not assume the use of database indexes.
+          However, individual db adapters may opt to support them. The RethinkDB
           adapter will create indexes for you if they don't exist:
 
         +code('javascript').
@@ -622,7 +622,7 @@ html
                 options: {
                   multi: true
                 }
-              } 
+              }
             ]
           });
 
@@ -632,18 +632,18 @@ html
           let jeffs = yield model.rawQry().getAll("jeff", { index: 'name'}).run();
 
           console.log( jeffs.length ); /* 1 */
-         
+
         :marked
-          _Note: The [thinodium-rethinkdb](https://github.com/hiddentao/thinodium-rethinkdb) adapter readme has more information on what types of indexes can be created._
+          _Note: The [thinodium-rethinkdb](https://github.com/thinodium/thinodium-rethinkdb) adapter readme has more information on what types of indexes can be created._
 
       section#hooks
         :marked
           ## Hooks
 
-          Hooks allow you to perform additional processing upon 
+          Hooks allow you to perform additional processing upon
           data before and/or after all inserts, updates and removals.
 
-          Hooks are implemented as events which get emmitted during the raw 
+          Hooks are implemented as events which get emmitted during the raw
           querying methods:
 
         +code('javascript').
@@ -670,18 +670,18 @@ html
           /*
             before
           */
-         
+
           /*
             after
             {
               id: // auto-generated id
               name: 'Janice',
               hasKids: true
-            }  
+            }
           */
 
         :marked
-          Since `Thinodium.Model` inherits from [EventEmitter](https://github.com/primus/eventemitter3) all the usual 
+          Since `Thinodium.Model` inherits from [EventEmitter](https://github.com/primus/eventemitter3) all the usual
           event handling benefits are available.
 
           The full list of  events which can be listened to:
@@ -695,17 +695,17 @@ html
           * `before:rawRemove`
           * `after:rawRemove`
 
-          Each `before:` handler will receive all the arguments passed into the 
+          Each `before:` handler will receive all the arguments passed into the
           equivalent raw querying method.
 
       section#adapters
         :marked
-          ## Database adapters 
+          ## Database adapters
 
-          Thinodium is database engine-agnostic. To add support for your 
-          database engine of choice you can write an adapter. 
+          Thinodium is database engine-agnostic. To add support for your
+          database engine of choice you can write an adapter.
 
-          An adapter has to extend the base `Database` and `Model` classes and 
+          An adapter has to extend the base `Database` and `Model` classes and
           override the necessary internal methods:
 
         +code('javascript').
@@ -719,7 +719,7 @@ html
             _connect (options) {
               return new Promise((resolve, reject) => {
                 // do what's needed for connection here and save into "connection" var
-                resolve(connection);      
+                resolve(connection);
               });
             }
 
@@ -743,14 +743,14 @@ html
             rawGet (id) {
               return new Promise((resolve, reject) => {
                 // fetch doc with given id
-                resolve(doc);      
+                resolve(doc);
               });
             }
 
             rawInsert (attrs) {
               return new Promise((resolve, reject) => {
                 // insert doc
-                resolve(doc);      
+                resolve(doc);
               });
             }
 
@@ -764,7 +764,7 @@ html
             rawRemove (id) {
               return new Promise((resolve, reject) => {
                 // remove doc with id
-                resolve();      
+                resolve();
               });
             }
           }
@@ -780,7 +780,7 @@ html
           });
 
         :marked
-          Alternatively, if the adapter is an NPM module then you can load it in 
+          Alternatively, if the adapter is an NPM module then you can load it in
           via its suffix name:
 
         +code('javascript').
@@ -793,16 +793,16 @@ html
           If you are going to publish your adapter as an NPM module please ensure
           the following:
 
-          * The NPM package name MUST be prefixed with `thinodium-`. 
+          * The NPM package name MUST be prefixed with `thinodium-`.
           For example, an adapter for Mongo might be called `thinodium-mongo`.
 
-          * It MUST require `thinodium` as a **peerDependency** and NOT as a 
-          direct dependency. This affords library users more control over what 
+          * It MUST require `thinodium` as a **peerDependency** and NOT as a
+          direct dependency. This affords library users more control over what
           version of Thinodium they use.
-          
-          * It SHOULD have automated tested which call into the core Thinodium 
-          methods. For a good example see [thinodium-rethinkdb](https://github.com/hiddentao/thinodium-rethinkdb) tests.
-          
+
+          * It SHOULD have automated tested which call into the core Thinodium
+          methods. For a good example see [thinodium-rethinkdb](https://github.com/thinodium/thinodium-rethinkdb) tests.
+
           * Once it is published please [let us know](https://twitter.com/hiddentao)!
 
           All existing adapters are [viewable on NPM](https://www.npmjs.com/search?q=thinodium).
@@ -812,13 +812,9 @@ html
         h2 API
 
       footer
-        p By <a href="https://twitter.com/hiddentao">@hiddentao</a>. Source on <a href="https://github.com/hiddentao/thinodium">Github</a>.
+        p By <a href="https://twitter.com/hiddentao">@hiddentao</a>. Source on <a href="https://github.com/thinodium/thinodium">Github</a>.
 
     script(type="text/javascript", src="js/prism.js")
     script(type="text/javascript", src="js/jquery.js")
     script(type="text/javascript", src="js/scrollSpy.js")
-    script(type="text/javascript", src="js/main.js")      
-
-
-
-    
+    script(type="text/javascript", src="js/main.js")

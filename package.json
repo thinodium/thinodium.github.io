@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/hiddentao/thinodium.git"
+    "url": "git://github.com/thinodium/thinodium.git"
   },
   "keywords": [
     "thinodium",
@@ -20,9 +20,9 @@
   "author": "Ramesh Nair <ram@hiddentao.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hiddentao/thinodium/issues"
+    "url": "https://github.com/thinodium/thinodium/issues"
   },
-  "homepage": "https://github.com/hiddentao/thinodium",
+  "homepage": "https://github.com/thinodium/thinodium",
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-expect-file": "0.0.7",

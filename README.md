@@ -1,4 +1,4 @@
-Documentation site for [thinodium](https://github.com/hiddentao/thinodium), viewable
+Documentation site for [thinodium](https://github.com/thinodium/thinodium), viewable
 live at [thinodium.github.io](https://thinodium.github.io).
 
 ## Building
